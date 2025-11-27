@@ -138,7 +138,8 @@ class Ex1Test {
 	/**
 	 * Tests the equality of pairs of arrays.
 	 */
-	public void testEquals() {
+	public void testEquals()
+    {
 		double[][] d1 = {{0}, {1}, {1,2,0,0}};
 		double[][] d2 = {Ex1.ZERO, {1+ Ex1.EPS/2}, {1,2}};
 		double[][] xx = {{-2* Ex1.EPS}, {1+ Ex1.EPS*1.2}, {1,2, Ex1.EPS/2}};
@@ -174,7 +175,7 @@ class Ex1Test {
 	/**
 	 * Test the area f1(x)=0, f2(x)=x;
 	 */
-	public void testArea2() {
+	public void testArea2() {//the area under f(x)=x in [-1,2] is 1.5 and not 2.5
 		double[] po_a = Ex1.ZERO;
 		double[] po_b = {0,1};
 		double x1 = -1;
@@ -193,7 +194,8 @@ class Ex1Test {
 	/**
 	 * Test the area function.
 	 */
-	public void testArea3() {
+	public void testArea3() // 58.56784200000161 is close enough
+    {
 		double[] po_a = {2,1,-0.7, -0.02,0.02};
 		double[] po_b = {6, 0.1, -0.2};
 		double x1 = Ex1.sameValue(po_a,po_b, -10,-5, Ex1.EPS);
@@ -201,4 +203,46 @@ class Ex1Test {
 		double area = 58.5658;
 		assertEquals(a1,area, Ex1.EPS);
 	}
+    @Test
+    public void testPolynomFrom3Points() {
+        double[] xx = new double[]{-2,1,2};
+        double[] yy = new double[]{4,7,12};
+        double[] ans;
+        ans=Ex1.PolynomFromPoints(xx,yy);
+        assertTrue(ans[0]==4);
+        assertTrue(ans[1]==2);
+        assertTrue(ans[2]==1);
+    }
+    @Test
+    public void testPolynomFrom2Points()
+    {
+        double[] xx = new double[]{-6,2.5};
+        double[] yy = new double[]{-4,-106};
+        double[] ans;
+        ans=Ex1.PolynomFromPoints(xx,yy);
+        assertTrue(ans[0]==-76);
+        assertTrue(ans[1]==-12);
+    }
+    @Test
+    public void testLengthAndSameValue()
+    {
+        double[] p1 = new double[]{-2,1,2};
+        double[] p2 = new double[]{4,7,-12};
+        double x1=Ex1.sameValue(p1,p2,-5,0,Ex1.EPS);
+        double x2=Ex1.sameValue(p1,p2,0,5,Ex1.EPS);
+        double l1=Ex1.length(p1,x1,x2,5);
+        double l2=Ex1.length(p2,x1,x2,5);
+        assertTrue(Ex1.length(p1,x1,x2,5)<Ex1.length(p2,x1,x2,5));
+
+    }
+    @Test
+    public void testLengt2()
+    {
+        double[] p1 = new double[]{-2,1,2};
+        double[] p2 = new double[]{2,-1,-2};
+        double l1=Ex1.length(p1,-10,10,40);
+        double l2=Ex1.length(p2,-10,10,40);
+        assertTrue(l1==l2);
+    }
+
 }
