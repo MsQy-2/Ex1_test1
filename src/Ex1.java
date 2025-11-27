@@ -141,10 +141,11 @@ public class Ex1 {
         if (poly.length == 0) {
             ans = "0";
         } else {
-            if(poly.length <=2)
+            if(poly.length ==2)
             {
-                ans += poly[poly.length - 1] + "x" + (poly.length - 1);
+                ans += poly[poly.length - 1] + "x" ;
             }
+            else if(poly.length ==1){ans += poly[poly.length - 1];}
             else {
             ans += poly[poly.length - 1] + "x" + "^" + (poly.length - 1);
             }
