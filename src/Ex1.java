@@ -141,9 +141,19 @@ public class Ex1 {
         if (poly.length == 0) {
             ans = "0";
         } else {
+            if(poly.length <=2)
+            {
+                ans += poly[poly.length - 1] + "x" + (poly.length - 1);
+            }
+            else {
             ans += poly[poly.length - 1] + "x" + "^" + (poly.length - 1);
+            }
             for (int i = 1; i < poly.length - 1; i++) {
-                if (poly.length - 2 > i) {
+                if(poly[poly.length - i-1] == 0)
+                {
+                    i++;
+                }
+                if (poly.length - i > 2) {
                     if (poly[poly.length - i - 1] < 0) {
                         ans += " " + poly[i] + "x" + "^" + (poly.length - i - 1);
                     } else {
